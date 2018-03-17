@@ -6,7 +6,7 @@ import br.com.devmedia.webservice.model.dao.ProjetoEmpregadoDAO;
 import br.com.devmedia.webservice.model.domain.Empregado;
 import br.com.devmedia.webservice.model.domain.Projeto;
 
-public class rlProjetoEmpregadoService {
+public class RlProjetoEmpregadoService {
 	private ProjetoEmpregadoDAO dao = new ProjetoEmpregadoDAO();
 	
 	public void saveRelationshipProjetoEmpregado(Long projetoId, Long empregadoId) {

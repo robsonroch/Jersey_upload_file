@@ -66,5 +66,10 @@ public class EmpregadoResource {
         service.updateEmpregado(empregado);
         return Response.noContent().build();
     }
+    
+    @Path("{projetoId}")
+    public EmpregadoProjetoResource getEmpregadoProjetoResource() {
+    	return new EmpregadoProjetoResource();
+    }	
 
 }
