@@ -19,5 +19,9 @@ public class Empregado {
 
     private String nome;
     private String cargo;
+    
+    @ManyToMany(mappedBy = "empregados")
+    @JsonIgnore
+    private List<Projeto> projetos;
 
 }
