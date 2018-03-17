@@ -19,9 +19,8 @@ public class Empregado {
 
     private String nome;
     private String cargo;
-    
-    @ManyToMany(mappedBy = "empregados")
-    @JsonIgnore
+        
+    @ManyToMany(mappedBy = "empregados", cascade={CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Projeto> projetos;
 
 }

@@ -40,13 +40,13 @@ public class EmpregadoResource {
 
     @GET
     @Path("{empregadoId}")
-    public Empregado getEmpregado(@PathParam("empregadoId") long empregadoId) {
+    public Empregado getEmpregado(@PathParam("empregadoId") Long empregadoId) {
         return service.getEmpregado(empregadoId);
     }
 
     @DELETE
     @Path("{empregadoId}")
-    public Response delete(@PathParam("empregadoId") long id) {
+    public Response delete(@PathParam("empregadoId") Long id) {
         service.deleteEmpregado(id);
         return Response.noContent().build();
     }
@@ -61,15 +61,15 @@ public class EmpregadoResource {
 
     @PUT
     @Path("{empregadoId}")
-    public Response update(@PathParam("empregadoId") long id, Empregado empregado) {
+    public Response update(@PathParam("empregadoId") Long id, Empregado empregado) {
         empregado.setId(id);
         service.updateEmpregado(empregado);
         return Response.noContent().build();
     }
-    
-    @Path("{projetoId}")
+
+    @Path("{empregadoId}/projetos")
     public EmpregadoProjetoResource getEmpregadoProjetoResource() {
-    	return new EmpregadoProjetoResource();
-    }	
+        return new EmpregadoProjetoResource();
+    }
 
 }

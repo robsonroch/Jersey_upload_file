@@ -51,7 +51,7 @@ public class EmpregadoDAO {
 
     public Empregado save(Empregado empregado) {
         EntityManager em = JPAUtil.getEntityManager();
-
+        
         if (!empregadoIsValid(empregado)) {
             throw new DAOException("Empregado com dados incompletos.", ErrorCode.BAD_REQUEST.getCode());
         }
