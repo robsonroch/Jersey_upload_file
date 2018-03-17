@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [02/Oct/2017:09:18:29 -0300] "GET /crudmn/webapi/projetos/3/empregados HTTP/1.1" 200 125 http-bio-8080-exec-1 3131
+0:0:0:0:0:0:0:1 - - [02/Oct/2017:09:18:45 -0300] "POST /crudmn/webapi/projetos/50/empregados/50 HTTP/1.1" 500 104 http-bio-8080-exec-2 20
+0:0:0:0:0:0:0:1 - - [02/Oct/2017:09:20:28 -0300] "POST /crudmn/webapi/projetos/50/empregados/50 HTTP/1.1" 500 104 http-bio-8080-exec-1 2323
+0:0:0:0:0:0:0:1 - - [02/Oct/2017:09:20:47 -0300] "POST /crudmn/webapi/projetos/50/empregados/50 HTTP/1.1" 500 104 http-bio-8080-exec-1 2327
+0:0:0:0:0:0:0:1 - - [02/Oct/2017:09:21:11 -0300] "POST /crudmn/webapi/projetos/50/empregados/50 HTTP/1.1" 404 67 http-bio-8080-exec-1 2398

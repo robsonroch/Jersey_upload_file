@@ -1,0 +1,15 @@
+br\com\devmedia\webservice\model\domain\Projeto.class
+br\com\devmedia\webservice\resources\ProjetoResource.class
+br\com\devmedia\webservice\exceptions\WebAPIExceptionMapper.class
+br\com\devmedia\webservice\exceptions\DAOExceptionMapper.class
+br\com\devmedia\webservice\exceptions\ErrorCode.class
+br\com\devmedia\webservice\model\dao\EmpregadoDAO.class
+br\com\devmedia\webservice\service\ProjetoService.class
+br\com\devmedia\webservice\model\dao\ProjetoDAO.class
+br\com\devmedia\webservice\resources\EmpregadoResource.class
+br\com\devmedia\webservice\model\domain\ErrorMessage.class
+br\com\devmedia\webservice\model\dao\JPAUtil.class
+br\com\devmedia\webservice\resources\beans\FilterBean.class
+br\com\devmedia\webservice\exceptions\DAOException.class
+br\com\devmedia\webservice\model\domain\Empregado.class
+br\com\devmedia\webservice\service\EmpregadoService.class
