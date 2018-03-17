@@ -1,5 +1,7 @@
 package br.com.devmedia.webservice.model.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
@@ -44,6 +46,69 @@ public class ProjetoEmpregadoDAO {
 		}
 	}
 
+	public List<Empregado> getEmpregados(Long projetoId){
+		if(projetoId<=0) {
+			throw new DAOException("O id do projeto precisa ser maior do que 0.", ErrorCode.BAD_REQUEST.getCode());	
+		}
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		
+		try {
+			return em
+					.createQuery("Select e from Empregado e JOIN e.projetos p where p.id = :projetoId", Empregado.class)
+					.setParameter("projetoId", projetoId)
+					.getResultList();
+		} catch (RuntimeException e) {
+			throw new DAOException("Erro ao recuperar os empregados do projeto de id " + projetoId + " do banco: " + e.getMessage(), ErrorCode.SERVER_ERROR.getCode());
+		} finally {
+			em.close();
+		}
+	}
+	
+	public List<Projeto> getProjetos(Long empregadoId){
+		if(empregadoId<=0) {
+			throw new DAOException("O id do projeto precisa ser maior do que 0.", ErrorCode.BAD_REQUEST.getCode());	
+		}
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		
+		try {
+			return em
+					.createQuery("Select p from Projeto p JOIN p.empregados d where e.id = :empregadoId", Projeto.class)
+					.setParameter("empregadoId", empregadoId)
+					.getResultList();
+		} catch (RuntimeException e) {
+			throw new DAOException("Erro ao recuperar os projetos do empregado de id " + empregadoId + " do banco: " + e.getMessage(), ErrorCode.SERVER_ERROR.getCode());
+		} finally {
+			em.close();
+		}
+	}
+
+	public void deleteRelationship(Long projetoId, Long empregadoId) {
+		if(projetoId <= 0 || empregadoId <=0) {
+			throw new DAOException("O id do projeto e do id do empregado precisam ser maiores que 0.", ErrorCode.BAD_REQUEST.getCode());
+		}
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		
+		if(!relationshiExist(projetoId, empregadoId, em)){
+			throw new DAOException("Relacionamento informado para remoção não existe.", ErrorCode.NOT_FOUND.getCode());
+		}
+		
+		try {
+			Projeto projeto = em.find(Projeto.class, projetoId);
+			Empregado empregado = em.find(Empregado.class, empregadoId);
+			em.getTransaction().begin();
+			projeto.getEmpregados().remove(empregado);
+			em.persist(projeto);
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			throw new DAOException("Erro ao remover relacionamento entre projeto e empregado no banco de dados: " + e.getMessage(), ErrorCode.SERVER_ERROR.getCode());
+		} finally {
+			em.close();
+		}
+	}
+	
 	private boolean relationshiExist(Long projetoId, Long empregadoId, EntityManager em) {
 
 		try {
